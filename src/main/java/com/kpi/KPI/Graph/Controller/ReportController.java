@@ -11,11 +11,6 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/all")
 public class ReportController {
-    
-    //
-
- // test
-
 
     @Autowired
    private TeamInfomationService teamInfomationService;
