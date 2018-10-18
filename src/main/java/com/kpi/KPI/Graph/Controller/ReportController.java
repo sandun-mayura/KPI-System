@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping(path = "/all")
 public class ReportController {
 
-    ++add
+ 
     @Autowired
    private TeamInfomationService teamInfomationService;
 
