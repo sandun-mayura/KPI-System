@@ -4,16 +4,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.crypto.Data;
+import java.util.Date;
 
 @Entity
 @Table(name = "report_data")
 public class Report {
     @Id
     @Column(name = "data_id")
-    private long teamId;
+    private long dataId;
 
     @Column(name = "team_id")
-    private long team_id;
+    private long teamid;
 
     @Column(name = "qa_bug")
     private long qaBug;
@@ -31,25 +33,25 @@ public class Report {
     private long misses;
 
     @Column(name = "date")
-    private long date;
+    private Date date;
 
     @Column(name = "no_of_week")
     private long noOfWeek;
 
-    public long getTeamId() {
-        return teamId;
+    public long getDataId() {
+        return dataId;
     }
 
-    public void setTeamId(long teamId) {
-        this.teamId = teamId;
+    public void setDataId(long dataId) {
+        this.dataId = dataId;
     }
 
-    public long getTeam_id() {
-        return team_id;
+    public long getTeamid() {
+        return teamid;
     }
 
-    public void setTeam_id(long team_id) {
-        this.team_id = team_id;
+    public void setTeamid(long teamid) {
+        this.teamid = teamid;
     }
 
     public long getQaBug() {
@@ -92,11 +94,11 @@ public class Report {
         this.misses = misses;
     }
 
-    public long getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

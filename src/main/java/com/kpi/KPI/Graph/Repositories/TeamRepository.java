@@ -6,10 +6,11 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface TeamRepository  extends CrudRepository<Team,Long>{
+public interface TeamRepository extends CrudRepository<Team,Long>{
 
 
     @Query("select t from Team t WHERE  t.teamName =?1")
     List<Team> TeamsByTeamName(String name);
+
 
 }
