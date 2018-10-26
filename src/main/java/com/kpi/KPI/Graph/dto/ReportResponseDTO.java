@@ -2,11 +2,17 @@ package com.kpi.KPI.Graph.dto;
 
 public class ReportResponseDTO {
 
+    private Long dataId;
+
     private Long teamId;
 
     private Long totalBugCount;
 
-    private Long allCount;
+    private double averageBug;
+
+    private long totalDelivered;
+
+
 
     public Long getTeamId() {
         return teamId;
@@ -14,6 +20,14 @@ public class ReportResponseDTO {
 
     public void setTeamId(Long teamId) {
         this.teamId = teamId;
+    }
+
+    public Long getDataId() {
+        return dataId;
+    }
+
+    public void setDataId(Long dataId) {
+        this.dataId = dataId;
     }
 
     public Long getTotalBugCount() {
@@ -24,11 +38,19 @@ public class ReportResponseDTO {
         this.totalBugCount = totalBugCount;
     }
 
-    public Long getAllCount() {
-        return allCount;
+    public double getAverageBug() {
+        return averageBug;
     }
 
-    public void setAllCount(Long allCount) {
-        this.allCount = allCount;
+    public void setAverageBug(double averageBug) {
+        this.averageBug = averageBug;
+    }
+
+    public long getTotalDelivered() {
+        return totalDelivered;
+    }
+
+    public void setTotalDelivered(long totalDelivered) {
+        this.totalDelivered = totalDelivered;
     }
 }

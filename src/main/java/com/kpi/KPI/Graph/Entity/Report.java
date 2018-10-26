@@ -1,11 +1,12 @@
 package com.kpi.KPI.Graph.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
 import javax.xml.crypto.Data;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "report_data")
@@ -14,8 +15,9 @@ public class Report {
     @Column(name = "data_id")
     private long dataId;
 
-    @Column(name = "team_id")
-    private long teamid;
+    @JoinColumn(name = "team_id")
+    @OneToOne(fetch=FetchType.EAGER)
+    private Team team;
 
     @Column(name = "qa_bug")
     private long qaBug;
@@ -33,10 +35,13 @@ public class Report {
     private long misses;
 
     @Column(name = "date")
+    @JsonFormat(timezone = "GMT+05:30",pattern="yyyy-MM-dd")
     private Date date;
 
     @Column(name = "no_of_week")
     private long noOfWeek;
+
+
 
     public long getDataId() {
         return dataId;
@@ -46,12 +51,12 @@ public class Report {
         this.dataId = dataId;
     }
 
-    public long getTeamid() {
-        return teamid;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setTeamid(long teamid) {
-        this.teamid = teamid;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public long getQaBug() {
@@ -109,4 +114,6 @@ public class Report {
     public void setNoOfWeek(long noOfWeek) {
         this.noOfWeek = noOfWeek;
     }
+
+
 }

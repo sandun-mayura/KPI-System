@@ -3,14 +3,12 @@ package com.kpi.KPI.Graph.Controller;
 import com.kpi.KPI.Graph.Entity.Report;
 import com.kpi.KPI.Graph.Entity.Team;
 import com.kpi.KPI.Graph.Services.ReportService;
+import com.kpi.KPI.Graph.dto.BaselineResponseDTO;
 import com.kpi.KPI.Graph.dto.ReportResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -46,15 +44,37 @@ public class ReportController {
 
     //find data by date range (Report Table)
     @GetMapping("/reportRange")
-    public List<Report/*ReportResponseDTO*/> getRecord
+    public List<Report> getRecord
     (@RequestParam(value = "id") Long id,
      @RequestParam(value = "fromDate") @DateTimeFormat(pattern = "dd-MM-yyyy") Date fromDate,
      @RequestParam(value = "toDate") @DateTimeFormat(pattern = "dd-MM-yyyy") Date toDate) {
 
 
-        List<Report/*ReportResponseDTO*/> reportByDate = reportService.getReportByDateRange(id, fromDate, toDate);
+        List<Report> reportByDate = reportService.getReportByDateRange(id, fromDate, toDate);
 
         return reportByDate;
+    }
+
+    //calculate results by date range
+    @GetMapping("/calResult")
+    public List<ReportResponseDTO> getValues
+    (@RequestParam(value = "id") Long id,
+     @RequestParam(value = "fromDate") @DateTimeFormat(pattern = "dd-MM-yyyy") Date fromDate,
+     @RequestParam(value = "toDate") @DateTimeFormat(pattern = "dd-MM-yyyy") Date toDate) {
+
+
+        List<ReportResponseDTO> listOfCalculation = reportService.getCalulateReportByDateRange(id, fromDate, toDate);
+
+        return listOfCalculation;
+    }
+
+    //Calculate baseline information
+    @GetMapping("/baseline")
+    public List<BaselineResponseDTO> getBaselineById(@RequestParam Long id) {
+        List<BaselineResponseDTO> listOfBaseline = reportService.getBaselineById(id);
+        return listOfBaseline;
 
     }
+
+
 }
