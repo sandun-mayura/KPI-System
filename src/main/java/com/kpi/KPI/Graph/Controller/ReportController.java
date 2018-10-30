@@ -1,14 +1,14 @@
 package com.kpi.KPI.Graph.Controller;
 
 import com.kpi.KPI.Graph.Entity.Report;
-import com.kpi.KPI.Graph.Entity.Team;
 import com.kpi.KPI.Graph.Services.ReportService;
 import com.kpi.KPI.Graph.dto.BaselineResponseDTO;
 import com.kpi.KPI.Graph.dto.ReportResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.*;
-import java.util.Date;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
@@ -22,60 +22,25 @@ public class ReportController {
 
     //Report View for 3 Months
     @GetMapping("/reportView")
-    public List<Report> reportView(@RequestParam(value = "id") Long id){
-        List<Report> reportView = reportService.getreportView(id);
+    public List<Report> reportView(@RequestParam(value = "teamId") Long id) {
+        List<Report> reportView = reportService.getReportViewById(id);
         return reportView;
     }
 
-    //calculate results by date range
-    @GetMapping("/calResult")
-    public List<ReportResponseDTO> getValues
-    (@RequestParam(value = "id") Long id,
-     @RequestParam(value = "fromDate") @DateTimeFormat(pattern = "dd-MM-yyyy") Date fromDate,
-     @RequestParam(value = "toDate") @DateTimeFormat(pattern = "dd-MM-yyyy") Date toDate) {
-
-
-        List<ReportResponseDTO> listOfCalculation = reportService.getCalulateReportByDateRange(id, fromDate, toDate);
-
+    //calculate results (total value etc)
+    @GetMapping("/calculateView")
+    public List<ReportResponseDTO> CalculateView(@RequestParam(value = "teamId") Long id){
+        List<ReportResponseDTO> listOfCalculation = reportService.getCalculateViewById(id);
         return listOfCalculation;
     }
 
     //Calculate baseline information
-    @GetMapping("/baseline")
-    public List<BaselineResponseDTO> getBaselineById(@RequestParam Long id) {
-        List<BaselineResponseDTO> listOfBaseline = reportService.getBaselineById(id);
+    @GetMapping("/baselineView")
+    public List<BaselineResponseDTO> BaselineView(@RequestParam(value = "teamId") Long id) {
+        List<BaselineResponseDTO> listOfBaseline = reportService.getBaselineViewById(id);
         return listOfBaseline;
 
     }
-
-
-
-/*
-    //getting all data from report table
-    @GetMapping(path = "/all")
-    @ResponseBody
-    Iterable<Report> getAllstylist() {
-        return reportService.findAll();
-    }
-*/
-
-
-    /*//geting all data by team ID (in team table)
-    @GetMapping("/team/{name}")
-    public List<Team> getTeamName(@PathVariable String name) {
-        List<Team> TeamNames = reportService.getTeamsByTeamName(name);
-        return TeamNames;
-    }*/
-
-/*    //find data by team Id (Report Table)
-    @GetMapping("/report")
-    public List<Report> getReportById(@RequestParam Long id) {
-        List<Report> ReportData = reportService.getReportById(id);
-        return ReportData;
-
-    }*/
-
-
 
 
 }

@@ -4,6 +4,7 @@ import com.kpi.KPI.Graph.Entity.Team;
 import com.kpi.KPI.Graph.Repositories.ReportRepository;
 
 import com.kpi.KPI.Graph.Repositories.TeamRepository;
+import com.kpi.KPI.Graph.dto.BaselineResponseDTO;
 import com.kpi.KPI.Graph.dto.SaveReportDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,7 @@ public class ReportSaveService {
         } else {
             Report report = new Report();
             Optional<Team> teamlist = teamRepository.findById(saveReportDTO.getTeam());
+
             report.setTeam(teamlist.get());
             report.setQaBug(saveReportDTO.getBugCount());
             report.setClientBug(saveReportDTO.getClientBug());
@@ -53,6 +55,7 @@ public class ReportSaveService {
             report.setMisses(saveReportDTO.getMisses());
             report.setDate(today);
             report.setNoOfWeek(weekOfYear);
+
 
             reportRepository.save(report);
         }

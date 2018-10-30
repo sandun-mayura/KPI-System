@@ -11,6 +11,7 @@ public class SaveReportDTO {
     private long misses;
 
 
+
     public Long getDataId() {
         return dataId;
     }

@@ -3,15 +3,10 @@ package com.kpi.KPI.Graph.dto;
 public class BaselineResponseDTO {
 
     private Long teamId;
-
     private double qaBaseline;
-
     private double notDeliveredBaseline;
-
     private double totalBugAvg;
-
     private double missesBaseline;
-
 
     public Long getTeamId() {
         return teamId;
@@ -33,10 +28,8 @@ public class BaselineResponseDTO {
         return notDeliveredBaseline;
     }
 
-    public void setNotDeliveredBaseline(double notDeliveredBaseline) {
-        this.notDeliveredBaseline = notDeliveredBaseline;
+    public void setNotDeliveredBaseline(double notDeliveredBaseline) { this.notDeliveredBaseline = notDeliveredBaseline;
     }
-
     public double getTotalBugAvg() {
         return totalBugAvg;
     }

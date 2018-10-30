@@ -1,20 +1,20 @@
 package com.kpi.KPI.Graph.Services;
 
 import com.kpi.KPI.Graph.Entity.Report;
-import com.kpi.KPI.Graph.Entity.Team;
 import com.kpi.KPI.Graph.Repositories.ReportRepository;
 import com.kpi.KPI.Graph.Repositories.TeamRepository;
 import com.kpi.KPI.Graph.dto.BaselineResponseDTO;
 import com.kpi.KPI.Graph.dto.ReportResponseDTO;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 
 @Service
@@ -28,40 +28,27 @@ public class ReportService {
 
     LocalDate today = LocalDate.now();
 
-  /*  public Iterable<Report> findAll() {
-        return reportRepository.findAll();
-    }
-
-
-    public List<Team> getTeamsByTeamName(String name) {
-        List<Team> TeamNames = teamRepository.TeamsByTeamName(name);
-        return TeamNames;
-    }
-
-   //report data by teamId
-    public List<Report> getReportById(Long id) {
-        List<Report> ReportData = reportRepository.findAllById(id);
-        return ReportData;
-    }*/
-
     // Report View for 3 month
-    public List<Report> getreportView(Long id) {
+    public List<Report> getReportViewById(Long id) {
 
         LocalDate earlier = today.minusMonths(3);
 
         Date now = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
         Date pastDate = Date.from(earlier.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-        List<Report> listOfReports = reportRepository.findAllByIdAndDate(id,now,pastDate);
+        List<Report> listOfReports = reportRepository.findAllByIdAndDate(id, pastDate, now);
         return listOfReports;
     }
 
 
+    //report calculation
+    public List<ReportResponseDTO> getCalculateViewById(Long id) {
+        LocalDate earlier = today.minusMonths(3);
 
+        Date now = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date pastDate = Date.from(earlier.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-    //report calculation by date range
-    public List<ReportResponseDTO> getCalulateReportByDateRange(Long id, Date fromDate, Date toDate) {
-        List<Report> ReportData = reportRepository.findAllByDateRange(id, fromDate, toDate);
+        List<Report> ReportData = reportRepository.findAllByIdAndDate(id, pastDate, now);
 
         List<ReportResponseDTO> listOfCalculation = new ArrayList<>();
         Iterator<Report> ite = ReportData.iterator();
@@ -92,9 +79,9 @@ public class ReportService {
 
 
     //Baseline  data calculate
-    public List<BaselineResponseDTO> getBaselineById(Long id) {
+    public List<BaselineResponseDTO> getBaselineViewById(Long id) {
 
-//set date for past 6 month
+        //set date for past 6 month
 
         LocalDate earlier = today.minusMonths(4);
 
@@ -110,7 +97,7 @@ public class ReportService {
         double notDelivered;
         double allNotDel = 0;
         double avgBug = 0;
-        double totalMisses=0;
+        double totalMisses = 0;
 
         List<BaselineResponseDTO> listOfBaseline = new ArrayList<>();
 
@@ -137,10 +124,9 @@ public class ReportService {
             double teamMembers = report.getTeam().getTeamMembers();
             avgBug += bugSum / teamMembers;
 
-        //Misses
-            totalMisses +=(report.getMisses());
+            //Misses
+            totalMisses += (report.getMisses());
         }
-
 
 
         //All bug baseline
