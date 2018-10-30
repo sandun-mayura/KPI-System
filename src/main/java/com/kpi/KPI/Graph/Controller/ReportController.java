@@ -19,40 +19,12 @@ public class ReportController {
     @Autowired
     private ReportService reportService;
 
-    //getting all data from report table
-    @GetMapping(path = "/all")
-    @ResponseBody
-    Iterable<Report> getAllstylist() {
-        return reportService.findAll();
-    }
 
-
-    //geting all data by team ID (in team table)
-    @GetMapping("/team/{name}")
-    public List<Team> getTeamName(@PathVariable String name) {
-        List<Team> TeamNames = reportService.getTeamsByTeamName(name);
-        return TeamNames;
-    }
-
-    //find data by team Id (Report Table)
-    @GetMapping("/report")
-    public List<Report> getReportById(@RequestParam Long id) {
-        List<Report> ReportData = reportService.getReportById(id);
-        return ReportData;
-
-    }
-
-    //find data by date range (Report Table)
-    @GetMapping("/reportRange")
-    public List<Report> getRecord
-    (@RequestParam(value = "id") Long id,
-     @RequestParam(value = "fromDate") @DateTimeFormat(pattern = "dd-MM-yyyy") Date fromDate,
-     @RequestParam(value = "toDate") @DateTimeFormat(pattern = "dd-MM-yyyy") Date toDate) {
-
-
-        List<Report> reportByDate = reportService.getReportByDateRange(id, fromDate, toDate);
-
-        return reportByDate;
+    //Report View for 3 Months
+    @GetMapping("/reportView")
+    public List<Report> reportView(@RequestParam(value = "id") Long id){
+        List<Report> reportView = reportService.getreportView(id);
+        return reportView;
     }
 
     //calculate results by date range
@@ -75,6 +47,35 @@ public class ReportController {
         return listOfBaseline;
 
     }
+
+
+
+/*
+    //getting all data from report table
+    @GetMapping(path = "/all")
+    @ResponseBody
+    Iterable<Report> getAllstylist() {
+        return reportService.findAll();
+    }
+*/
+
+
+    /*//geting all data by team ID (in team table)
+    @GetMapping("/team/{name}")
+    public List<Team> getTeamName(@PathVariable String name) {
+        List<Team> TeamNames = reportService.getTeamsByTeamName(name);
+        return TeamNames;
+    }*/
+
+/*    //find data by team Id (Report Table)
+    @GetMapping("/report")
+    public List<Report> getReportById(@RequestParam Long id) {
+        List<Report> ReportData = reportService.getReportById(id);
+        return ReportData;
+
+    }*/
+
+
 
 
 }

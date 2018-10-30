@@ -2,8 +2,6 @@ package com.kpi.KPI.Graph.dto;
 
 public class BaselineResponseDTO {
 
-
-
     private Long teamId;
 
     private double qaBaseline;

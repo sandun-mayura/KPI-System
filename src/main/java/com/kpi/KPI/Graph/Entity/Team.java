@@ -22,8 +22,6 @@ public class Team {
     @Column(name = "no_of_team_members")
     private Long teamMembers;
 
-
-
     public Long getTeamId() {
         return teamId;
     }

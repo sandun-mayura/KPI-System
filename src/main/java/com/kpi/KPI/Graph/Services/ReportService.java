@@ -7,6 +7,7 @@ import com.kpi.KPI.Graph.Repositories.TeamRepository;
 import com.kpi.KPI.Graph.dto.BaselineResponseDTO;
 import com.kpi.KPI.Graph.dto.ReportResponseDTO;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,9 @@ public class ReportService {
     @Autowired
     ReportRepository reportRepository;
 
-    public Iterable<Report> findAll() {
+    LocalDate today = LocalDate.now();
+
+  /*  public Iterable<Report> findAll() {
         return reportRepository.findAll();
     }
 
@@ -35,18 +38,26 @@ public class ReportService {
         return TeamNames;
     }
 
-    //report data by teamId
+   //report data by teamId
     public List<Report> getReportById(Long id) {
         List<Report> ReportData = reportRepository.findAllById(id);
         return ReportData;
-    }
+    }*/
 
-    // data by date range
-    public List<Report> getReportByDateRange(Long id, Date fromDate, Date toDate) {
-        List<Report> listOfReports = reportRepository.findAllByDateRange(id, fromDate, toDate);
+    // Report View for 3 month
+    public List<Report> getreportView(Long id) {
 
+        LocalDate earlier = today.minusMonths(3);
+
+        Date now = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date pastDate = Date.from(earlier.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        List<Report> listOfReports = reportRepository.findAllByIdAndDate(id,now,pastDate);
         return listOfReports;
     }
+
+
+
 
     //report calculation by date range
     public List<ReportResponseDTO> getCalulateReportByDateRange(Long id, Date fromDate, Date toDate) {
@@ -84,7 +95,7 @@ public class ReportService {
     public List<BaselineResponseDTO> getBaselineById(Long id) {
 
 //set date for past 6 month
-        LocalDate today = LocalDate.now();
+
         LocalDate earlier = today.minusMonths(4);
 
         Date now = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -130,6 +141,8 @@ public class ReportService {
             totalMisses +=(report.getMisses());
         }
 
+
+
         //All bug baseline
         double qaBaseline = (allBugs / count);
         DecimalFormat df = new DecimalFormat("##.##");
@@ -143,7 +156,7 @@ public class ReportService {
         double avgBugBaseline = (avgBug / count);
         baselineResponseDTO.setTotalBugAvg(Double.parseDouble(df.format(avgBugBaseline)));
 
-//Misses baseline
+        //Misses baseline
         double missesBaseline = (totalMisses / count);
         baselineResponseDTO.setMissesBaseline(Double.parseDouble(df.format(missesBaseline)));
 
@@ -151,5 +164,6 @@ public class ReportService {
         listOfBaseline.add(baselineResponseDTO);
         return listOfBaseline;
     }
+
 
 }
