@@ -27,7 +27,7 @@ public class ReportSaveService {
         Calendar now   =  Calendar.getInstance();
         Date today     =  new Date();
         int weekOfYear =  now.get(Calendar.WEEK_OF_YEAR);
-
+//If comes with team id
         if (saveReportDTO.getDataId() != null) {
             Optional<Report> reportlist = reportRepository.findById(saveReportDTO.getDataId());
 
@@ -40,7 +40,6 @@ public class ReportSaveService {
             report.setOntimeDelivered(saveReportDTO.getOntimeDelivered());
             report.setNotDelivered(saveReportDTO.getNotDelivered());
             report.setMisses(saveReportDTO.getMisses());
-
 
             reportRepository.save(report);
         } else {
@@ -55,7 +54,6 @@ public class ReportSaveService {
             report.setMisses(saveReportDTO.getMisses());
             report.setDate(today);
             report.setNoOfWeek(weekOfYear);
-
 
             reportRepository.save(report);
         }
