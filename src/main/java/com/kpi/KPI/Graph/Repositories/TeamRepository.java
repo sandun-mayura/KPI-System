@@ -10,11 +10,6 @@ import java.util.Optional;
 
 public interface TeamRepository extends CrudRepository<Team,Long>{
 
-
-    @Query("select t from Team t WHERE  t.teamName =?1")
-    List<Team> TeamsByTeamName(String name);
-
-
     @Override
-    Optional<Team> findById(Long id);
+    List<Team> findAll();
 }

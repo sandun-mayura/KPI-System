@@ -1,19 +1,17 @@
 package com.kpi.KPI.Graph.Services;
+
 import com.kpi.KPI.Graph.Entity.Report;
 import com.kpi.KPI.Graph.Entity.Team;
 import com.kpi.KPI.Graph.Repositories.ReportRepository;
-
 import com.kpi.KPI.Graph.Repositories.TeamRepository;
-import com.kpi.KPI.Graph.dto.BaselineResponseDTO;
 import com.kpi.KPI.Graph.dto.SaveReportDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDate;
-import java.util.*;
-
-import static javax.swing.UIManager.get;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class ReportSaveService {
@@ -22,11 +20,14 @@ public class ReportSaveService {
 
     @Autowired
     ReportRepository reportRepository;
+
+    //create Calendar instance
+    Calendar now = Calendar.getInstance();
+    Date today = new Date();
+    int weekOfYear = now.get(Calendar.WEEK_OF_YEAR);
+
     public void saveReport(SaveReportDTO saveReportDTO, HttpServletRequest request) {
-        //create Calendar instance
-        Calendar now   =  Calendar.getInstance();
-        Date today     =  new Date();
-        int weekOfYear =  now.get(Calendar.WEEK_OF_YEAR);
+
 //If comes with team id
         if (saveReportDTO.getDataId() != null) {
             Optional<Report> reportlist = reportRepository.findById(saveReportDTO.getDataId());
@@ -40,9 +41,9 @@ public class ReportSaveService {
             report.setOntimeDelivered(saveReportDTO.getOntimeDelivered());
             report.setNotDelivered(saveReportDTO.getNotDelivered());
             report.setMisses(saveReportDTO.getMisses());
-
             reportRepository.save(report);
-        } else {
+        }
+        else {
             Report report = new Report();
             Optional<Team> teamlist = teamRepository.findById(saveReportDTO.getTeam());
 

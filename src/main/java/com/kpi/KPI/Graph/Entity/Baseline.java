@@ -9,7 +9,7 @@ import java.util.Date;
 
 
     @Entity
-    @Table(name = "report_data")
+    @Table(name = "baseline")
     public class Baseline {
 
         @Id
@@ -27,29 +27,28 @@ import java.util.Date;
         private Date date;
 
         @Column(name = "qa_baseline")
-        private Double qaBL;
+        private double qaBaseline;
 
         @Column(name = "qa_baseline_target")
-        private Double qaBLTarget;
+        private double qaBaselineTarget;
 
         @Column(name = "not_delivered_baseline")
-        private Double notDeliveredBL;
+        private double notDeliveredBaseline;
 
         @Column(name = "not_delivered_baseline_target")
-        private Double notDeliveredBLTarget;
+        private double notDeliveredBaselineTarget;
 
-        @Column(name = "total_bug_avg")
-        private Double totalBugAvg;
+        @Column(name = "total_bug_avg_baseline")
+        private double totalBugAvgBaseline;
 
-        @Column(name = "total_bug_avg_target")
-        private Double totalBugAvgTarget;
+        @Column(name = "total_bug_avg_baseline_target")
+        private double totalBugAvgBaselineTarget;
 
         @Column(name = "misses_baseline")
-        private Double missesBL;
+        private double missesBaseline;
 
         @Column(name = "misses_baseline_target")
-        private Double missesBLTarget;
-
+        private double missesBaselineTarget;
 
         public long getBaselineId() {
             return baselineId;
@@ -75,67 +74,70 @@ import java.util.Date;
             this.date = date;
         }
 
-        public Double getQaBL() {
-            return qaBL;
+        public double getQaBaseline() {
+            return qaBaseline;
         }
 
-        public void setQaBL(Double qaBL) {
-            this.qaBL = qaBL;
+        public void setQaBaseline(double qaBaseline) {
+            this.qaBaseline = qaBaseline;
         }
 
-        public Double getQaBLTarget() {
-            return qaBLTarget;
+        public double getQaBaselineTarget() {
+            return qaBaselineTarget;
         }
 
-        public void setQaBLTarget(Double qaBLTarget) {
-            this.qaBLTarget = qaBLTarget;
+        public void setQaBaselineTarget(double qaBaselineTarget) {
+            this.qaBaselineTarget = qaBaselineTarget;
         }
 
-        public Double getNotDeliveredBL() {
-            return notDeliveredBL;
+
+
+        public double getNotDeliveredBaseline() {
+            return notDeliveredBaseline;
         }
 
-        public void setNotDeliveredBL(Double notDeliveredBL) {
-            this.notDeliveredBL = notDeliveredBL;
+        public void setNotDeliveredBaseline(double notDeliveredBaseline) {
+            this.notDeliveredBaseline = notDeliveredBaseline;
         }
 
-        public Double getNotDeliveredBLTarget() {
-            return notDeliveredBLTarget;
+        public double getNotDeliveredBaselineTarget() {
+            return notDeliveredBaselineTarget;
         }
 
-        public void setNotDeliveredBLTarget(Double notDeliveredBLTarget) {
-            this.notDeliveredBLTarget = notDeliveredBLTarget; }
-
-        public Double getTotalBugAvg() {
-            return totalBugAvg;
+        public void setNotDeliveredBaselineTarget(double notDeliveredBaselineTarget) {
+            this.notDeliveredBaselineTarget = notDeliveredBaselineTarget;
         }
 
-        public void setTotalBugAvg(Double totalBugAvg) {
-            this.totalBugAvg = totalBugAvg;
+        public double getTotalBugAvgBaseline() {
+            return totalBugAvgBaseline;
         }
 
-        public Double getTotalBugAvgTarget() {
-            return totalBugAvgTarget;
+        public void setTotalBugAvgBaseline(double totalBugAvgBaseline) {
+            this.totalBugAvgBaseline = totalBugAvgBaseline;
         }
 
-        public void setTotalBugAvgTarget(Double totalBugAvgTarget) {
-            this.totalBugAvgTarget = totalBugAvgTarget;
+        public double getTotalBugAvgBaselineTarget() {
+            return totalBugAvgBaselineTarget;
         }
 
-        public Double getMissesBL() {
-            return missesBL;
+        public void setTotalBugAvgBaselineTarget(double totalBugAvgBaselineTarget) {
+            this.totalBugAvgBaselineTarget = totalBugAvgBaselineTarget;
         }
 
-        public void setMissesBL(Double missesBL) {
-            this.missesBL = missesBL;
+        public double getMissesBaseline() {
+            return missesBaseline;
         }
 
-        public Double getMissesBLTarget() {
-            return missesBLTarget;
+        public void setMissesBaseline(double missesBaseline) {
+            this.missesBaseline = missesBaseline;
         }
 
-        public void setMissesBLTarget(Double missesBLTarget) {
-            this.missesBLTarget = missesBLTarget;
+        public double getMissesBaselineTarget() {
+            return missesBaselineTarget;
+        }
+
+        public void setMissesBaselineTarget(double missesBaselineTarget) {
+            this.missesBaselineTarget = missesBaselineTarget;
         }
     }
 

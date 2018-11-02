@@ -50,9 +50,8 @@ public class Snowflake {
 
         long timestamp;
         for(timestamp = System.currentTimeMillis(); timestamp <= lastRunTimestamp; timestamp = System.currentTimeMillis()) {
-            ;
-        }
 
+        }
         return timestamp;
     }
 }

@@ -1,8 +1,9 @@
 package com.kpi.KPI.Graph.Controller;
 
 
+import com.kpi.KPI.Graph.Entity.Report;
 import com.kpi.KPI.Graph.Services.ReportSaveService;
-import com.kpi.KPI.Graph.dto.BaselineResponseDTO;
+
 import com.kpi.KPI.Graph.dto.SaveReportDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ public class ReportSaveController {
     private ReportSaveService reportService;
 //save All report values
     @PostMapping("/saveReportValues")
-    public List<BaselineResponseDTO> saveReportValues(@RequestBody SaveReportDTO saveReportDTO, HttpServletRequest request) {
+    public List<Report> saveReportValues(@RequestBody SaveReportDTO saveReportDTO, HttpServletRequest request) {
         reportService.saveReport(saveReportDTO, request);
         return null;
     }

@@ -1,8 +1,10 @@
 package com.kpi.KPI.Graph.Controller;
 
+import com.kpi.KPI.Graph.Entity.Baseline;
 import com.kpi.KPI.Graph.Entity.Report;
+import com.kpi.KPI.Graph.Services.BaselineService;
 import com.kpi.KPI.Graph.Services.ReportService;
-import com.kpi.KPI.Graph.dto.BaselineResponseDTO;
+
 import com.kpi.KPI.Graph.dto.ReportResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,9 @@ public class ReportController {
 
     @Autowired
     private ReportService reportService;
+
+    @Autowired
+    BaselineService baselineService;
 
 
     //Report View for 3 Months
@@ -36,11 +41,8 @@ public class ReportController {
 
     //Calculate baseline information
     @GetMapping("/baselineView")
-    public List<BaselineResponseDTO> BaselineView(@RequestParam(value = "teamId") Long id) {
-        List<BaselineResponseDTO> listOfBaseline = reportService.getBaselineViewById(id);
+    public List<Baseline> BaselineView(@RequestParam(value = "teamId") Long id) {
+        List<Baseline> listOfBaseline = baselineService.getBaselineViewById(id);
         return listOfBaseline;
-
     }
-
-
 }
