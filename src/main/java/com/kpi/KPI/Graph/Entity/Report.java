@@ -28,7 +28,7 @@ public class Report {
     private long clientBug;
 
     @Column(name = "ontime_delivered")
-    private long ontimeDelivered;
+    private long onTimeDelivered;
 
     @Column(name = "not_delivered")
     private long notDelivered;
@@ -76,12 +76,12 @@ public class Report {
         this.clientBug = clientBug;
     }
 
-    public long getOntimeDelivered() {
-        return ontimeDelivered;
+    public long getOnTimeDelivered() {
+        return onTimeDelivered;
     }
 
-    public void setOntimeDelivered(long ontimeDelivered) {
-        this.ontimeDelivered = ontimeDelivered;
+    public void setOnTimeDelivered(long onTimeDelivered) {
+        this.onTimeDelivered = onTimeDelivered;
     }
 
     public long getNotDelivered() {

@@ -85,7 +85,7 @@ LocalDate firstDateOfMonth=today.withDayOfMonth(1);
                 allBugs += (report.getClientBug() + report.getQaBug());
 
                 //Total delivered
-                totalDelived = (report.getOntimeDelivered() + report.getNotDelivered());
+                totalDelived = (report.getOnTimeDelivered() + report.getNotDelivered());
                 notDelivered = (report.getNotDelivered() / totalDelived) * 100;
                 allNotDel += notDelivered;
 

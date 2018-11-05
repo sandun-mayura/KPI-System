@@ -76,7 +76,7 @@ public class ReportService {
 
             //Calculate total delivered
 
-            reportResponseDTO.setTotalDelivered(report.getOntimeDelivered() + report.getNotDelivered());
+            reportResponseDTO.setTotalDelivered(report.getOnTimeDelivered() + report.getNotDelivered());
 
             //  allCount = allCount + reportResponseDTO.getTotalBugCount();
             listOfCalculation.add(reportResponseDTO);

@@ -38,7 +38,7 @@ public class ReportSaveService {
             report.setTeam(teamlist.get());
             report.setQaBug(saveReportDTO.getBugCount());
             report.setClientBug(saveReportDTO.getClientBug());
-            report.setOntimeDelivered(saveReportDTO.getOntimeDelivered());
+            report.setOnTimeDelivered(saveReportDTO.getOnTimeDelivered());
             report.setNotDelivered(saveReportDTO.getNotDelivered());
             report.setMisses(saveReportDTO.getMisses());
             reportRepository.save(report);
@@ -50,7 +50,7 @@ public class ReportSaveService {
             report.setTeam(teamlist.get());
             report.setQaBug(saveReportDTO.getBugCount());
             report.setClientBug(saveReportDTO.getClientBug());
-            report.setOntimeDelivered(saveReportDTO.getOntimeDelivered());
+            report.setOnTimeDelivered(saveReportDTO.getOnTimeDelivered());
             report.setNotDelivered(saveReportDTO.getNotDelivered());
             report.setMisses(saveReportDTO.getMisses());
             report.setDate(today);
