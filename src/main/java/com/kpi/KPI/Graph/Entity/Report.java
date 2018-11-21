@@ -40,8 +40,7 @@ public class Report {
     @JsonFormat(timezone = "GMT+05:30",pattern="yyyy-MM-dd")
     private Date date;
 
-    @Column(name = "no_of_week")
-    private long noOfWeek;
+
 
 
     public long getDataId() {
@@ -108,12 +107,6 @@ public class Report {
         this.date = date;
     }
 
-    public long getNoOfWeek() {
-        return noOfWeek;
-    }
 
-    public void setNoOfWeek(long noOfWeek) {
-        this.noOfWeek = noOfWeek;
-    }
 
 }

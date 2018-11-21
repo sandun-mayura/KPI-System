@@ -54,7 +54,7 @@ public class ReportSaveService {
             report.setNotDelivered(saveReportDTO.getNotDelivered());
             report.setMisses(saveReportDTO.getMisses());
             report.setDate(today);
-            report.setNoOfWeek(weekOfYear);
+           // report.setNoOfWeek(weekOfYear);
 
             reportRepository.save(report);
         }

@@ -11,5 +11,6 @@ public class KpiGraphApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(KpiGraphApplication.class, args);
+
 	}
-}
+		}

@@ -38,7 +38,6 @@ public class ReportController {
         List<ReportResponseDTO> listOfCalculation = reportService.getCalculateViewById(id);
         return listOfCalculation;
     }
-
     //Calculate baseline information
     @GetMapping("/baselineView")
     public List<Baseline> BaselineView(@RequestParam(value = "teamId") Long id) {

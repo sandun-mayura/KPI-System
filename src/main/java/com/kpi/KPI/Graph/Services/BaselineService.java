@@ -30,7 +30,6 @@ public class BaselineService {
 
     LocalDate today = LocalDate.now();
 
-
     public List<Baseline> getBaselineViewById(Long id) {
 
 LocalDate firstDateOfMonth=today.withDayOfMonth(1);
@@ -44,23 +43,19 @@ LocalDate firstDateOfMonth=today.withDayOfMonth(1);
     }
 
 
-    public void monthlyBaseline() {
 
+    public void monthlyBaseline() {
         List<Team> teamlist = teamRepository.findAll();
         Iterator<Team> teamIterator = teamlist.iterator();
 
-
         while (teamIterator.hasNext()) {
             Team team = teamIterator.next();
-
             long teamId = team.getTeamId();
-
 
             //set date for past 6 month
             LocalDate earlier = today.minusMonths(6);
             Date now = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
             Date pastDate = Date.from(earlier.atStartOfDay(ZoneId.systemDefault()).toInstant());
-
 
             List<Report> reportList =reportRepository.findAllByIdAndDate(teamId, pastDate, now);
 
