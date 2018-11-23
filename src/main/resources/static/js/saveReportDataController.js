@@ -1,6 +1,6 @@
 app.controller("MainController", function ($scope, $http) {
     console.log("main")
-    $scope.save = function(qABug,clientBug,onTimeDelivered,notDelivered,misses) {
+    $scope.save = function() {
         console.log($scope.qABug)
     var data = {
         "team":3,
@@ -12,5 +12,11 @@ app.controller("MainController", function ($scope, $http) {
     };
 
         $http.post("api/saveReportValues", data)
-    }
+    .then(function(response) {
+            // success
+        alert("Data adding successfully")
+        },
+        function(response) { // optional
+            // failed
+        });}
 });

@@ -3,6 +3,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/x.y.z/locale/ar.js"></script>-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -18,6 +19,10 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="http://cdn.zingchart.com/zingchart.min.js"></script>
     <script src="http://cdn.zingchart.com/angular/zingchart-angularjs.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/graph.css">
     <script src="js/mainModule.js"></script>
@@ -44,8 +49,7 @@
     <br>
 
 
-</div>
-<div>
+
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addDataModalCenter"  data-backdrop="static">
         Add Report Data
@@ -67,29 +71,29 @@
 
                     <label>QA Bug</label>
                     <div class="input-group mb-3">
-                        <input ng-model="qABug" type="text" class="form-control" aria-label="Default"
-                               aria-describedby="inputGroup-sizing-default"></div>
+                        <input ng-model="qABug" type="number" class="form-control" aria-label="Default"
+                               aria-describedby="inputGroup-sizing-default"  min="0" max="99" ></div>
 
                     <label>Client Bug</label>
                     <div class="input-group mb-3">
-                        <input ng-model="clientBug" type="text" class="form-control" aria-label="Default"
+                        <input ng-model="clientBug" type="number" class="form-control" aria-label="Default"
                                aria-describedby="inputGroup-sizing-default">
                     </div>
 
                     <label>Ontime Delivered</label>
                     <div class="input-group mb-3">
-                        <input ng-model="onTimeDelivered" type="text" class="form-control" aria-label="Default"
+                        <input ng-model="onTimeDelivered" type="number" class="form-control" aria-label="Default"
                                aria-describedby="inputGroup-sizing-default">
                     </div>
-                    <label>Not ontime Delivered</label>
+                    <label>Ontime Not Delivered</label>
                     <div class="input-group mb-3">
-                        <input ng-model="notDelivered" type="text" class="form-control" aria-label="Default"
+                        <input ng-model="notDelivered" type="number" class="form-control" aria-label="Default"
                                aria-describedby="inputGroup-sizing-default">
                     </div>
 
                     <label>Misses</label>
                     <div class="input-group mb-3">
-                        <input ng-model="misses" type="text" class="form-control" aria-label="Default"
+                        <input ng-model="misses" type="number" class="form-control" aria-label="Default"
                                aria-describedby="inputGroup-sizing-default">
                     </div>
 
@@ -97,8 +101,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmData"  data-dismiss="modal"  data-backdrop="static">Save
-                        changes
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmData"  data-dismiss="modal"  data-backdrop="static">Add
                     </button>
                 </div>
             </div>
@@ -118,24 +121,45 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
-<h3>Are you sure you want to add this data ?</h3>
-                    <label>QA Bug : {{qABug}}</label>
+                    <div class="text-center">
+                        <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                    <h6>Are you sure you want to add this data ?</h6>
+                    <label>QA Bug               : {{qABug}}</label><br>
+                    <label>Client Bug           : {{clientBug}}</label><br>
+                    <label>Ontime Delivered     : {{onTimeDelivered}}</label><br>
+                    <label>Ontime Not Delivered : {{notDelivered}}</label><br>
+                    <label>Misses               : {{misses}}</label>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#addDataModalCenter" data-toggle="modal">Close</button>
-                    <button type="button" class="btn btn-primary" ng-click="save(qABug,clientBug)">Save
-                        changes
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#addDataModalCenter" data-toggle="modal">Back</button>
+                    <button type="button" class="btn btn-primary " ng-click="save(qABug,clientBug,onTimeDelivered,notDelivered,misses)" savedata() data-dismiss="modal" >Confirm
                     </button>
 
                 </div>
             </div>
         </div>
     </div>
+<script>
+    function savedata(){
+    $.confirm({
+        buttons: {
+            hey: function () {
+                // here the button key 'hey' will be used as the text.
+                $.alert('You clicked on "hey".');
+            },
+            heyThere: {
+                text: 'hey there!', // With spaces and symbols
+                action: function () {
+                    $.alert('You clicked on "heyThere"');
+                }
+            }
+        }
+    });}
+</script>
+</div>
 
 
-</div>
-</div>
 
 
 <div ng-controller="OverallTimelineViewController ">
