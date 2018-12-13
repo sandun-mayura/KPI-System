@@ -28,7 +28,6 @@
     <script src="js/mainModule.js"></script>
     <script src="js/routeGraph.js"></script>
     <script src="js/saveReportDataController.js"></script>
-    <script src="js/QABugReportViewController.js"></script>
     <script src="js/OverallTimelineViewController.js"></script>
     <script src="js/OverallAverageBugViewController.js"></script>
     <script src="js/OverallProcedureMissesViewController.js"></script>
@@ -38,9 +37,8 @@
 <div ng-controller="MainController">
     <div ng-view ng-controller="QABugReportViewController"></div>
 
-    <br>
-    <a href="#!QABugView">QABugView</a>
-    <br>
+
+
     <a href="#!OverallTimelineView">OverallTimelineView</a>
     <br>
     <a href="#!OverallAverageBugView">OverallAverageBugView</a>
@@ -96,8 +94,6 @@
                         <input ng-model="misses" type="number" class="form-control" aria-label="Default"
                                aria-describedby="inputGroup-sizing-default">
                     </div>
-
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -171,8 +167,19 @@
     <div ng-view></div>
 </div>
 <div ng-controller="OverallProcedureMissesViewController">
-    <div ng-view></div>
+    <div ng-view>
+
+
+
+        <center>
+            <div zingchart id="chart-1" zc-json="graphData" data-ng-init="show(2)" zc-width="100%" zc-height="100%">
+            </div>
+        </center>
+
+    </div>
 </div>
 
+<a href="api/user">Google</a>
+<a href="https://mail.google.com/mail/u/0/?logout&hl=en">logout</a>
 </body>
 </html>

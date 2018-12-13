@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -18,12 +20,11 @@ import java.util.List;
 public class ReportController {
 
 
+
     @Autowired
     private ReportService reportService;
-
     @Autowired
     BaselineService baselineService;
-
 
     //Report View for 3 Months
     @GetMapping("/reportView")
@@ -31,17 +32,22 @@ public class ReportController {
         List<Report> reportView = reportService.getReportViewById(id);
         return reportView;
     }
-
     //calculate results (total value etc)
     @GetMapping("/calculateView")
     public List<ReportResponseDTO> CalculateView(@RequestParam(value = "teamId") Long id){
         List<ReportResponseDTO> listOfCalculation = reportService.getCalculateViewById(id);
         return listOfCalculation;
     }
+
     //Calculate baseline information
     @GetMapping("/baselineView")
     public List<Baseline> BaselineView(@RequestParam(value = "teamId") Long id) {
         List<Baseline> listOfBaseline = baselineService.getBaselineViewById(id);
         return listOfBaseline;
+    }
+
+    @RequestMapping(value="/user")
+    public Principal user(Principal principal) {
+        return principal;
     }
 }
