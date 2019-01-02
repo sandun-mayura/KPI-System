@@ -34,56 +34,25 @@
 </head>
 
 
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="MainController">
 
 <th:block th:include="fragments/header :: header"></th:block>
-test
-<input  onkeyup="openNav()"  ng-change="search(myInput)" ng-model="myInput"
-        placeholder="What are you locking for?" type="text" class="form-control"  name="search">
-<div id="mySidenav" class="sidenav container-fluid" >
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br>
-    <div class="btn-group" role="group">
 
-        <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal" >Advance Search</button>
-        <div>
-        </div>
-        <br>
+    <div  ng-controller="OverallTimelineViewController">
+      <center>
+            <div  id="chart-2">
+            </div>
+        </center>
 
 
 
-        <div class="table-container ">
-            <table class="table table-bordered table-dark">
-                <tbody>
-                <p class="result text-center"   ng-repeat="result in results | limitTo:1"><b style="color: red">{{results.length}} </b>result(s) were found
-                    for the search for
-                    <b style="color: red">{{myInput}}</b></p>
-                <p class="result text-center" ng-show="results.length == 0">Your search - <b style="color: red">{{myInput}}</b> - did not match any stylist
-                    details.</p>
-
-                <tr ng-repeat="result in results | limitTo : 10">
 
 
-                    <td>
-                        <a  style="text-decoration:none;color:inherit" ng-href="#!profile"
-                            ng-click="ProfileView(result.stylistId)">
-                            <img ng-src= {{result.imageUrl}} height="50" width="50" alt="image" style="border-radius: 50%;">
-                            <p class="result"> <b>{{result.prices[0].services[0].serviceName}} </b><br>
 
-                                {{result.stylistFirstName}}
-                                {{result.stylistLastName}} is  from
-                                {{result.country}}
-                            </p>
-
-                        </a></td>
-                </tr>
-
-                </tbody>
-            </table>
-        </div>
+        <th:block th:include="fragments/footer :: footer"></th:block>
     </div>
 
 
 
-</div>
 </body>
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+    </style>
+</head>
+<body>
+<div th:fragment="sidenav">
+
+    <div id="mySidenav" class="sidenav"  onmouseleave="closeNav()">
+
+        <a href="/QABugView">QA Bug Chart</a>
+        <a href="/OverallTimelineView">Average Bug Chart</a>
+        <a href="/OverallAverageBugView">Timeline Chart</a>
+        <a href="/OverallProcedureMissesView">Misses Chart</a>
+
+    </div>
+
+
+
+
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+
+</div>
+
+
+</body>
+</html>

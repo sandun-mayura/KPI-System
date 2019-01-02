@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+    </style>
+</head>
+<body>
+<div th:fragment="header">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="">
+            <!-- Logo and responsive toggle -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index"><span class="glyphicon glyphicon-globe" onmouseover="openNav()"></span>  KPI Chart</a>
+            </div>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/index">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Teams</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chart <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="about-us">
+                            <li><a href="/QABugView">QA Bugs</a></li>
+                            <li><a href="/OverallTimelineView">Timeline</a></li>
+                            <li><a href="/OverallAverageBugView">Average QA Bugs</a></li>
+                            <li><a href="/OverallProcedureMissesView">Misses</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Search -->
+                <div class="navbar-form navbar-right " >
+                    <div class="form-group">
+                        <h4   id="TName" style="color: #5bc0de"></h4>
+
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="swtichTeam()"><span class="glyphicon glyphicon-transfer"></span> Switch Team</button>
+
+                </div>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <th:block th:include="fragments/sidenav :: sidenav"></th:block>
+</div>
+
+
+</body>
+</html>

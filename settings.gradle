@@ -1,1 +1,2 @@
 rootProject.name = 'KPI Graph'
+include 'oauth-server', 'resource-server'
